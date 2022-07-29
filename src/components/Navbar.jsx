@@ -20,7 +20,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
       <span
         style={{ background: dotColor }}
         className="absolute inline-flex rounded-full h-2 w-2 right-2 top-2"
-       />
+      />
       {icon}
     </button>
   </TooltipComponent>
@@ -32,10 +32,10 @@ const Navbar = () => {
     setActiveMenu,
     isClicked,
     setIsClicked,
-    handleClick,
+    handleClicked,
     screenSize,
     setScreenSize,
-    currentColor
+    currentColor,
   } = useStateContext();
 
   useEffect(() => {
@@ -47,13 +47,13 @@ const Navbar = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  useEffect(()=> {
+  useEffect(() => {
     if (screenSize <= 900) {
-      setActiveMenu(false)
+      setActiveMenu(false);
     } else {
-      setActiveMenu(true)
+      setActiveMenu(true);
     }
-  },[screenSize])
+  }, [screenSize]);
 
   return (
     <div className="flex justify-between p-2 md:mx-6 relative">
@@ -66,28 +66,28 @@ const Navbar = () => {
       <div className="flex">
         <NavButton
           title="Cart"
-          customFunc={() => handleClick("cart")}
+          customFunc={() => handleClicked("cart")}
           color={currentColor}
           icon={<FiShoppingCart />}
         />
         <NavButton
           title="Chat"
           dotColor="#03C9D7"
-          customFunc={() => handleClick("chat")}
+          customFunc={() => handleClicked("chat")}
           color={currentColor}
           icon={<BsChatLeft />}
         />
         <NavButton
           title="Notification"
           dotColor="#03C9D7"
-          customFunc={() => handleClick("notification")}
+          customFunc={() => handleClicked("notification")}
           color={currentColor}
           icon={<RiNotification3Line />}
         />
         <TooltipComponent content="Profile" position="BottomCenter">
           <div
             className="flex items-center gap-2 cursor-pointer p-1 hover:bg-light-gray rounded-lg"
-            onClick={() => handleClick("userProfile")}
+            onClick={() => handleClicked("userProfile")}
           >
             <img src={avatar} alt="avatar" className="rounded-full w-8 h-8" />
             <p>
